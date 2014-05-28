@@ -1,23 +1,13 @@
 <html>
 
 <head>
-<title>WebGL OBJ Viewer</title>
-
-<!-- Disable all caching during development -->
-<meta http-equiv="cache-control" content="max-age=0" />
-<meta http-equiv="cache-control" content="no-cache" />
-<meta http-equiv="expires" content="0" />
-<meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
-<meta http-equiv="pragma" content="no-cache" />
+<title>MeshView Start</title>
 
 <!-- dependencies -->
-<script type="text/javascript" src="obj.js"></script>
 <script type="text/javascript" src="jquery-2.1.0.min.js"></script>
-<script type="text/javascript" src="glMatrix-0.9.5.min.js"></script>
-<script type="text/javascript" src="webgl-utils.js"></script>
 
 <!-- Meshview Program -->
-<script type="text/javascript" src="meshview.js"></script>
+<link rel="stylesheet" href="animate.css">
 
 <style>
     body, html 
@@ -27,6 +17,9 @@
         border: 0px;
         padding: 0px;
         margin: 0px;
+        background-image:url('back.jpg'); 
+        background-repeat:no-repeat;
+        background-position:bottom right;
     }
     #glCanvas 
     {
@@ -37,7 +30,7 @@
     #overlay
     {
     	position:absolute;
-    	top:20px; left:30px;
+    	top:30%; left:35%;
     	z-index:100;
     	color:white;
     	opacity:0.75;
@@ -51,6 +44,30 @@
     {
     	height:30px;
     }
+
+    #footer 
+    {
+    position: fixed; 
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 25px;
+    margin-left:10px;
+    color:gray;
+}
+
+a:link {color:gray;}      /* unvisited link */
+a:visited {color:gray;}  /* visited link */
+a:hover {color:gray;}  /* mouse over link */
+a:active {color:gray;}  /* selected link */
+
+p
+{
+    color:gray;
+    font-size: 10px;
+    font-family: arial;
+}
+
 </style>
 </head>
 
@@ -60,15 +77,17 @@ error_reporting(0);
 
 <body bgcolor="#000000">
 	<div id="overlay">
-		<form action="index.php" method="post">
-			<input type="text" id="urlbox" name="model" value="<?php file_put_contents('Tmp.jpg', file_get_contents($_POST['model'])); echo $_POST["model"]; ?>">
-            <input type="submit" id="urlbutton">
-            			<!-- <button id="urlbutton" onclick="submitOBJ();return false;">Load OBJ</button><br> -->
+        <img src="logo.png" class="animated fadeInDown"><br>
+		<form action="meshview.php" method="post">
+			<input type="text" id="urlbox" name="model" value="<?php file_put_contents('tmp.jpg', file_get_contents($_POST['model'])); if ($_POST["model"] == "") echo "747.obj"; else echo $_POST["model"]; ?>">
+            <input type="submit" id="urlbutton"><br>
+            <p>Enter the URL to an obj file or try one of these: cat.obj, 747.obj, suzanne.obj, teapot.obj.</p>
 		</form>
 	</div>
-    <canvas id="glCanvas"></canvas>
-
-    
+    <div id="footer">
+        Created by <a href="http://github.com/andrew197">Andrew Pinion</a>
+   </div>
 </body>
 
 </html>
+

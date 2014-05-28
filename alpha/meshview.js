@@ -121,7 +121,7 @@ function initShaders()
         gl.linkProgram(shaderProgram);
 
         //verify that the shader is valid GLSL
-        if (!gl.getProgramParameter(shaderProgram, gl.LINK_STATUS)) alert("GLSL Shaders Failed to Link");
+        if (!gl.getProgramParameter(shaderProgram, gl.LINK_STATUS)) location.reload();
         else
         {
             gl.useProgram(shaderProgram);
