@@ -23,7 +23,7 @@ var vrotationAngle = 0;
 var prevTime = 0;
 var rotSpeed = 0.05;
 var vrotSpeed = 0.05;
-var scale = 1.0;
+var scale = 12.0;
 
 //keyboard control
 var currentlyPressedKeys = {};
@@ -71,7 +71,7 @@ function submitOBJ()
     obj_download(gl, OBJURL, setupCallback);
 
     //reset scale when loading a new model
-    scale = 1.0;
+    scale = 12.0;
 }
 
 function setupCallback(loadedOBJ) 
