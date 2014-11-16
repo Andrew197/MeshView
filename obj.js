@@ -10,6 +10,7 @@ function obj_download(glContext, fileName, callback)
   $.ajax(
   {
     url: fileName,
+    cache: false,
     dataType: 'text',
     success: function(data) 
     {
