@@ -79,7 +79,7 @@ error_reporting(0);
 	<div id="overlay">
         <img src="logo.png" class="animated fadeInDown"><br>
 		<form action="meshview.php" method="post">
-			<input type="text" id="urlbox" name="model" value="<?php file_put_contents('tmp.jpg', file_get_contents($_POST['model'])); if ($_POST["model"] == "") echo "747.obj"; else echo $_POST["model"]; ?>">
+			<input type="text" id="urlbox" name="model" value="<?php file_put_contents('tmp.jpg', file_get_contents($_POST['model'])); if ($_POST["model"] == "") echo "cat.obj"; else echo $_POST["model"]; ?>">
             <input type="hidden" name="dummy" value="something">
             <input type="submit" id="urlbutton"><br>
             <p>Enter the URL to an obj file or try one of these: cat.obj, 747.obj, suzanne.obj, teapot.obj.</p>
