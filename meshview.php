@@ -65,6 +65,12 @@
     {
     	height:30px;
     }
+    .zoombuttons
+    {
+        position:fixed;
+        bottom:0;
+        right:0;
+    }
 </style>
 </head>
 
@@ -81,6 +87,9 @@ error_reporting(0);
             <input type="submit" name="submit" id="urlbutton" value="submit">
             			<!-- <button id="urlbutton" onclick="submitOBJ();return false;">Load OBJ</button><br> -->
 		</form>
+            <div class="zoombuttons">
+            <img src="plus.jpg" onclick="zoomIn();"><br>
+            <img src="minus.jpg" onclick="zoomOut();"></div>
 	</div>
     <canvas id="glCanvas"></canvas>
 

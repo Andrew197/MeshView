@@ -331,6 +331,10 @@ function keyboardInput()
 
 }
 
+
+function zoomIn() { scale += 0.5; }
+function zoomOut() { scale -= 0.5; }
+
 //-------------------------------------------------------------
 //Render Functions
 //-------------------------------------------------------------
