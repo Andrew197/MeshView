@@ -88,8 +88,8 @@ error_reporting(0);
             			<!-- <button id="urlbutton" onclick="submitOBJ();return false;">Load OBJ</button><br> -->
 		</form>
             <div class="zoombuttons">
-            <img src="plus.jpg" onclick="zoomIn();"><br>
-            <img src="minus.jpg" onclick="zoomOut();"></div>
+            <img src="plus.png" onclick="zoomIn();"><br>
+            <img src="minus.png" onclick="zoomOut();"></div>
 	</div>
     <canvas id="glCanvas"></canvas>
 

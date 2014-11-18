@@ -60,8 +60,8 @@ function initGL()
     }
 
     //error handling
-    catch (e)    { alert("Sorry, WebGL is not supported on your device."); }
-    if    (!gl)  { alert("Model Viewer Cannon Continue.");                 }
+    catch (e)    { alert("WebGL is not supported properly on this browser :("); }
+    if    (!gl)  { alert("Model Viewer Can't Continue.");                 }
 }
 
 function submitOBJ()
