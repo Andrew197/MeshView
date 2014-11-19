@@ -277,11 +277,14 @@ function mouseDragged(event)
     if (tempX > tempY) tempY = 0;
     else tempX = 0;
 
-    if (mouseX > pMouseX && rotSpeed < 0.1 && tempX > 20) rotSpeed += 0.01;
-    else if (mouseX < pMouseX && rotSpeed < 0.1 && tempX > 20) rotSpeed -= 0.01;
+    if (mouseX > pMouseX && rotSpeed < 0.1 && tempX > 20) rotSpeed += 0.1;
+    else if (mouseX < pMouseX && rotSpeed < 0.1 && tempX > 20) rotSpeed -= 0.1;
 
-    if (mouseY > pMouseY && vrotSpeed < 0.1 && tempY > 20) vrotSpeed += 0.01;
-    else if (mouseY < pMouseY && vrotSpeed > -0.1 && tempY > 20) vrotSpeed -= 0.01;
+    if (mouseY > pMouseY && vrotSpeed < 0.1 && tempY > 20) vrotSpeed += 0.1;
+    else if (mouseY < pMouseY && vrotSpeed > -0.1 && tempY > 20) vrotSpeed -= 0.1;
+
+    pMouseY = mouseY;
+    pMouseX = mouseX;
 
 }
 
