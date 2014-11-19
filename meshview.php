@@ -65,7 +65,7 @@
     {
     	height:30px;
     }
-    .zoombuttons
+    #zoombuttons
     {
         position:fixed;
         bottom:0;
@@ -87,7 +87,7 @@ error_reporting(0);
             <input type="submit" name="submit" id="urlbutton" value="submit">
             			<!-- <button id="urlbutton" onclick="submitOBJ();return false;">Load OBJ</button><br> -->
 		</form>
-            <div class="zoombuttons">
+            <div id="zoombuttons">
             <img src="plus.png" onclick="zoomIn();"><br>
             <img src="minus.png" onclick="zoomOut();"></div>
 	</div>

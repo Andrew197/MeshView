@@ -28,6 +28,8 @@ var scale = 12.0;
 //keyboard control
 var currentlyPressedKeys = {};
 
+var supportsTouch;
+
 //-------------------------------------------------------------
 //Initialization
 //-------------------------------------------------------------
@@ -39,7 +41,9 @@ $(document).ready(function()
     //get a WebGL context and the OBJ filename in the edit box
     initGL();
     submitOBJ();
+    supportsTouch = 'ontouchstart' in window || navigator.msMaxTouchPoints;
 
+    if (!supportsTouch) document.getElementById('zoombuttons').style.display = 'none';
 });
 
 function initGL() 
