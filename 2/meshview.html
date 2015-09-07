@@ -1,0 +1,140 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Meshview2 Prototype</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<style>
+			body {
+				font-family: Monospace;
+				background-color: #000;
+				color: #fff;
+				margin: 0px;
+				overflow: hidden;
+			}
+			#info {
+				color: #fff;
+				position: absolute;
+				top: 10px;
+				width: 100%;
+				text-align: center;
+				z-index: 100;
+				display:block;
+			}
+			#info a, .button { color: #f00; font-weight: bold; text-decoration: underline; cursor: pointer }
+             #overlay
+            {
+    	        position:absolute;
+    	        top:20px; left:30px;
+    	        z-index:100;
+    	        color:white;
+    	        opacity:0.75;
+            }
+            #urlbox
+            {
+    	        width:350px;
+    	        height:25px;
+                padding:0px;
+                border:0px;
+                margin-right:0px;
+            }
+            #urlbutton
+            {
+    	        height:25px;
+                margin-left:0px;
+            }
+		</style>
+	</head>
+
+	<body>
+		<script src="lib/three.min.js"></script>
+		<script src="lib/DDSLoader.js"></script>
+		<script src="lib/MTLLoader.js"></script>
+		<script src="lib/OBJMTLLoader.js"></script>
+        <script src="lib/OrbitControls.js"></script>
+		<script src="lib/Detector.js"></script>
+		<script src="lib/stats.min.js"></script>
+
+		<script>
+
+			var container, stats;
+			var camera, scene, renderer;
+			var controls;
+			var obj;
+			var light;
+
+			init();
+			animate();
+
+			function init()
+			{
+                //create the viewport
+				container = document.createElement('DIV');
+				document.body.appendChild(container);
+
+                //camera and controls
+				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, .01, 2000 );
+				camera.position.z = 3;
+				controls = new THREE.OrbitControls(camera);
+				controls.addEventListener('change', render);
+
+				//scene and lighting
+				scene = new THREE.Scene();
+				var ambient = new THREE.AmbientLight( 0x444444 );
+				scene.add(ambient);
+				var directionalLight = new THREE.DirectionalLight( 0xffeedd );
+				directionalLight.position.set( 0, 0, 1 ).normalize();
+				scene.add(directionalLight);
+				light = directionalLight;
+
+				// model loading
+				var onProgress = function (xhr)
+				{
+				    if (xhr.lengthComputable)
+				    {
+						var percentComplete = xhr.loaded / xhr.total * 100;
+						console.log( Math.round(percentComplete, 2) + '% downloaded' );
+					}
+				};
+				var onError = function ( xhr ) { console.log("eipc fail") };
+                THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
+                var loader = new THREE.OBJMTLLoader();
+                loader.load('cat.obj', 'cat.mtl', function (object)
+                {
+					scene.add(object);
+					obj = object;
+					console.dir(obj.children[0].children[0].material);
+				}, onProgress, onError );
+
+				renderer = new THREE.WebGLRenderer();
+				renderer.setPixelRatio( window.devicePixelRatio );
+				renderer.setSize(window.innerWidth, window.innerHeight);
+				renderer.setClearColor(0x0080FF);
+				container.appendChild( renderer.domElement );
+				window.addEventListener( 'resize', onWindowResize, false );
+			}
+
+            //fix window dimensions on resize
+			function onWindowResize()
+			{
+				var windowHalfX = window.innerWidth / 2;
+				var windowHalfY = window.innerHeight / 2;
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+				renderer.setSize( window.innerWidth, window.innerHeight );
+			}
+
+			function animate()
+			{
+				requestAnimationFrame( animate );
+				render();
+			}
+
+			function render()
+			{
+			    renderer.render(scene, camera);
+			    light.position.copy(camera.position);
+			}
+		</script>
+	</body>
+</html>
